@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    # command: '--default-authentication-plugin=mysql_native_password'
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: password
+
+  wordpress:
+    depends_on:
+      - mysql
+    image: wordpress:latest
+    container_name: wordpress 
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_NAME: wordpress     # Database name
+      WORDPRESS_DB_USER: wordpress     # Username
+      WORDPRESS_DB_PASSWORD: password  # Password
+    ports:
+      - "80:80"
+    restart: always
+
+#  nginx:
+#    depends_on:
+#      - wordpress
+#    container_name: nginx
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - 80:80
+#      - 443:433
+
