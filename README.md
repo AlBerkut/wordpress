@@ -1,6 +1,6 @@
 # WordPress
 
-### !AHTUNG!
+### !ACHTUNG!
 WordPress работает без proxy_pass в Nginx.
 Nginx конфликтует с Apache установленным в стеке LAMP вместе с WordPress.
 При обратном проксировании слетают все стили и скрипты WordPress.
